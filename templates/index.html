@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Music Sentiment Analysis</title>
+    <title>Music Mood Detection</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@700;800;900&family=Satoshi:wght@400;500;700&display=swap" rel="stylesheet">
@@ -150,6 +150,8 @@
             text-align: center;
             transition: all 0.3s;
             font-weight: 500;
+            border: none;
+            cursor: pointer;
         }
 
         .btn-primary:hover {
@@ -365,6 +367,7 @@
             text-align: center;
             margin-bottom: 1rem;
             transition: transform 0.3s;
+            position: relative;
         }
 
         .product-card:hover .product-icon {
@@ -520,7 +523,6 @@
             color: var(--stone-600);
         }
 
-        /* Tab content for analysis */
         .tabcontent {
             display: none;
             padding: 2rem;
@@ -569,13 +571,6 @@
             100% { transform: rotate(360deg); }
         }
 
-        .analysis-input {
-            padding: 1rem;
-            border: 1px solid var(--stone-200);
-            border-radius: 16px;
-            font-family: 'Satoshi', sans-serif;
-        }
-
         .file-input {
             padding: 1rem;
             border: 2px dashed var(--stone-200);
@@ -616,10 +611,6 @@
             text-transform: uppercase;
             font-size: 0.8rem;
         }
-
-        .positive { background: var(--emerald); color: white; }
-        .negative { background: var(--orange); color: white; }
-        .neutral { background: var(--stone-600); color: white; }
 
         .suggestions {
             margin-top: 2rem;
@@ -669,37 +660,34 @@
     </style>
 </head>
 <body>
-    <!-- Sticky Header -->
     <header class="sticky-header">
         <div class="logo">
-            <div class="logo-icon">♪</div>
+            <div class="logo-icon">MM</div>
             <h3>MusicMood</h3>
         </div>
         <nav class="nav-links">
             <a href="#hero">Home</a>
             <a href="#benefits">Features</a>
             <a href="#gallery">Analysis</a>
-            <a href="#newsletter">Updates</a>
         </nav>
         <a href="#gallery" class="cta-button">Analyze Now</a>
     </header>
 
-    <!-- 3D Floating Hero -->
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
                 <h1>DISCOVER YOUR<br>MUSIC MOOD</h1>
-                <p>Analyze song lyrics and facial expressions to find the perfect music for your emotions.</p>
+                <p>Analyze facial expressions and get music genre suggestions that match your mood.</p>
                 <div class="hero-buttons">
-                    <a href="#lyrics" class="btn-primary" onclick="openTab(event, 'Lyrics')">Lyrics Analysis</a>
-                    <a href="#image" class="btn-secondary" onclick="openTab(event, 'Image')">Facial Mood</a>
+                    <a href="#Image" class="btn-primary" onclick="openTab(event, 'Image')">Facial Mood</a>
+                    <a href="#benefits" class="btn-secondary">See Features</a>
                 </div>
             </div>
             <div class="hero-3d" onmousemove="handleMouseMove(event)">
-                <div class="card-3d card-a">🎵</div>
-                <div class="card-3d card-b">🎶</div>
-                <div class="floating-icon icon-1">🎼</div>
-                <div class="floating-icon icon-2">🎤</div>
+                <div class="card-3d card-a">FACE</div>
+                <div class="card-3d card-b">MOOD</div>
+                <div class="floating-icon icon-1">AI</div>
+                <div class="floating-icon icon-2">MIX</div>
                 <div class="social-proof">
                     <div class="avatars">
                         <div class="avatar"></div>
@@ -712,81 +700,43 @@
         </div>
     </section>
 
-    <!-- Dark Benefits Grid -->
     <section class="benefits" id="benefits">
         <div class="benefits-grid">
             <div class="benefit-card">
-                <div class="benefit-icon" style="background: rgba(5, 150, 105, 0.1); color: var(--emerald);">📝</div>
-                <h3>Lyrics Analysis</h3>
-                <p>Understand the emotional tone of any song lyrics using advanced NLP.</p>
+                <div class="benefit-icon" style="color: var(--emerald);">UP</div>
+                <h3>Facial Mood Detection</h3>
+                <p>Upload a face photo and detect the strongest visible emotion in seconds.</p>
             </div>
             <div class="benefit-card">
-                <div class="benefit-icon" style="background: rgba(234, 88, 12, 0.1); color: var(--orange);">🤖</div>
+                <div class="benefit-icon" style="color: var(--orange);">AI</div>
                 <h3>AI-Powered</h3>
-                <p>Leverage machine learning to classify sentiments with high accuracy.</p>
+                <p>Use computer vision models to estimate emotion scores with a graceful fallback.</p>
             </div>
             <div class="benefit-card">
-                <div class="benefit-icon" style="background: rgba(234, 88, 12, 0.1); color: var(--orange);">😊</div>
-                <h3>Facial Recognition</h3>
-                <p>Upload a photo to detect your current mood and get song recommendations.</p>
+                <div class="benefit-icon" style="color: var(--orange);">MIX</div>
+                <h3>Genre Suggestions</h3>
+                <p>Upload a photo to detect your current mood and get music genre suggestions.</p>
             </div>
         </div>
     </section>
 
-    <!-- Product Bento Gallery -->
     <section class="gallery" id="gallery">
         <div class="gallery-header">
-            <h2>Choose Your Analysis</h2>
+            <h2>Facial Expression Analysis</h2>
             <div class="nav-buttons">
-                <button class="nav-btn active" onclick="openTab(event, 'Lyrics')"></button>
-                <button class="nav-btn" onclick="openTab(event, 'Image')"></button>
-            </div>
-        </div>
-        <div class="gallery-grid">
-            <div class="product-card">
-                <div class="product-bg" style="background: rgba(5, 150, 105, 0.05);"></div>
-                <div class="product-icon">📝</div>
-                <h3>Lyrics Sentiment</h3>
-                <p>Paste song lyrics and get instant mood analysis.</p>
-                <div class="best-seller">Most Popular</div>
-            </div>
-            <div class="product-card">
-                <div class="product-bg" style="background: rgba(234, 88, 12, 0.05);"></div>
-                <div class="product-icon">📸</div>
-                <h3>Facial Expression</h3>
-                <p>Upload a photo for emotion detection and music suggestions.</p>
-            </div>
-            <div class="cta-card product-card">
-                <h3>Start Analyzing</h3>
-                <p>Choose your preferred method above to begin.</p>
-                <button class="btn-primary" style="margin-top: 1rem;" onclick="openTab(event, 'Lyrics')">Get Started</button>
-            </div>
-        </div>
-
-        <!-- Analysis Forms -->
-        <div id="Lyrics" class="tabcontent{% if active_tab == 'Lyrics' %} active{% endif %}">
-            <h3>Lyrics Sentiment Analysis</h3>
-            <form method="post" action="/" class="analysis-form" onsubmit="showLoading()">
-                <input type="hidden" name="mode" value="lyrics">
-                <label for="lyrics">Enter Song Lyrics:</label>
-                <textarea name="lyrics" id="lyrics" class="analysis-input" rows="10" placeholder="Paste your song lyrics here..." required></textarea>
-                <button type="submit" class="btn-primary">Analyze Sentiment</button>
-            </form>
-            <div id="lyrics-loading" class="loading">
-                <div class="spinner"></div>
-                <p>Analyzing your lyrics...</p>
+                <button class="nav-btn active" onclick="openTab(event, 'Image')"></button>
             </div>
         </div>
 
         <div id="Image" class="tabcontent{% if active_tab == 'Image' %} active{% endif %}">
-            <h3>Facial Expression Analysis</h3>
+            <h3>Upload a Face Photo</h3>
             <form action="/" method="post" enctype="multipart/form-data" class="analysis-form" onsubmit="showLoading()">
                 <input type="hidden" name="mode" value="image">
                 <label for="image" class="file-input">
-                    📸 Click to upload an image of a face
+                    Click to upload an image of a face
                 </label>
                 <input type="file" name="image" id="image" accept="image/*" required style="position:absolute; left:-9999px; opacity:0; width:1px; height:1px;">
-                <button type="submit" class="btn-primary">Detect Emotion & Suggest Songs</button>
+                <button type="submit" class="btn-primary">Detect Emotion and Suggest Genres</button>
             </form>
             <div id="image-loading" class="loading">
                 <div class="spinner"></div>
@@ -794,44 +744,15 @@
             </div>
         </div>
 
-        <!-- Results -->
-        {% if mode == 'lyrics' %}
-        <div class="result">
-            <div style="text-align: center; margin-bottom: 1rem;">
-                <div style="display: inline-block; padding: 0.5rem 1rem; background: var(--emerald); color: white; border-radius: 20px; font-size: 0.9rem; font-weight: 600;">
-                    ✅ Analysis Complete
-                </div>
-            </div>
-            <h3>Analysis Results</h3>
-            <div class="sentiment-badge {{ 'positive' if sentiment == 'Positive' else 'negative' if sentiment == 'Negative' else 'neutral' }}">
-                {{ sentiment }}
-            </div>
-            <div style="display: flex; justify-content: space-around; margin: 2rem 0;">
-                <div style="text-align: center;">
-                    <div style="font-size: 2rem; font-weight: 700;">{{ "%.2f"|format(polarity) }}</div>
-                    <div>Polarity</div>
-                </div>
-                <div style="text-align: center;">
-                    <div style="font-size: 2rem; font-weight: 700;">{{ "%.2f"|format(subjectivity) }}</div>
-                    <div>Subjectivity</div>
-                </div>
-            </div>
-            <h4>Original Lyrics:</h4>
-            <p style="background: white; padding: 1rem; border-radius: 16px; margin: 1rem 0;">{{ original }}</p>
-            <h4>Processed Text:</h4>
-            <p style="background: white; padding: 1rem; border-radius: 16px; margin: 1rem 0;">{{ processed }}</p>
-        </div>
-        {% endif %}
-
         {% if mode == 'image' %}
         <div class="result">
             <div style="text-align: center; margin-bottom: 1rem;">
                 <div style="display: inline-block; padding: 0.5rem 1rem; background: var(--emerald); color: white; border-radius: 20px; font-size: 0.9rem; font-weight: 600;">
-                    ✅ Analysis Complete
+                    Analysis Complete
                 </div>
             </div>
             <h3>Emotion Detection Results</h3>
-            <div class="sentiment-badge" style="background: var(--emerald);">{{ emotion|title }}</div>
+            <div class="sentiment-badge" style="background: var(--emerald); color: white;">{{ emotion|title }}</div>
             <h4>Emotion Scores:</h4>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin: 1rem 0;">
                 {% for emo, score in scores.items() %}
@@ -842,9 +763,17 @@
                 {% endfor %}
             </div>
             <div class="suggestions">
+                <h4>Suggested Genres:</h4>
+                <ul>
+                    {% for genre in genres %}
+                    <li class="suggestion-item">{{ genre }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="suggestions">
                 <h4>Suggested Songs:</h4>
                 <ul>
-                    {% for song in suggestions %}
+                    {% for song in songs %}
                     <li class="suggestion-item">{{ song }}</li>
                     {% endfor %}
                 </ul>
@@ -859,37 +788,25 @@
         {% endif %}
     </section>
 
-    <!-- Newsletter Injection -->
-    <section class="newsletter" id="newsletter">
-        <div class="newsletter-bg">♪</div>
-        <h2>STAY TUNED</h2>
-        <p>Get the latest updates on music analysis and new features.</p>
-        <form class="newsletter-form">
-            <input type="email" class="newsletter-input" placeholder="Enter your email" required>
-            <button type="submit" class="newsletter-btn">SIGN ME UP</button>
-        </form>
-    </section>
-
-    <!-- Detailed Footer -->
     <footer class="footer">
         <div class="footer-grid">
             <div class="footer-section">
                 <div class="logo" style="margin-bottom: 1rem;">
-                    <div class="logo-icon">♪</div>
+                    <div class="logo-icon">MM</div>
                     <h3>MusicMood</h3>
                 </div>
                 <p>Discover the emotional power of music through advanced AI analysis.</p>
                 <div class="social-icons">
-                    <div class="social-icon">📘</div>
-                    <div class="social-icon">🐦</div>
-                    <div class="social-icon">📷</div>
+                    <div class="social-icon">IG</div>
+                    <div class="social-icon">X</div>
+                    <div class="social-icon">YT</div>
                 </div>
             </div>
             <div class="footer-section">
                 <h3>Features</h3>
                 <ul class="footer-links">
-                    <li><a href="#Lyrics">Lyrics Analysis</a></li>
-                    <li><a href="#Image">Facial Recognition</a></li>
+                    <li><a href="#Image">Facial Mood Detection</a></li>
+                    <li><a href="#gallery">Genre Suggestions</a></li>
                     <li><a href="#benefits">AI Technology</a></li>
                 </ul>
             </div>
@@ -908,7 +825,7 @@
             </div>
         </div>
         <div class="copyright">
-            © 2024 MusicMood. All rights reserved.
+            &copy; 2024 MusicMood. All rights reserved.
         </div>
     </footer>
 
@@ -924,9 +841,8 @@
                 tablinks[i].className = tablinks[i].className.replace(" active", "");
             }
             document.getElementById(tabName).className += " active";
-            var activeIndex = tabName === 'Image' ? 1 : 0;
-            if (tablinks[activeIndex]) {
-                tablinks[activeIndex].className += " active";
+            if (tablinks[0]) {
+                tablinks[0].className += " active";
             }
         }
 
@@ -952,41 +868,35 @@
         }
 
         function showLoading() {
-            // Hide all loading indicators first
             document.querySelectorAll('.loading').forEach(el => el.classList.remove('show'));
 
-            // Show the appropriate loading indicator
             const activeTab = document.querySelector('.tabcontent.active');
             if (!activeTab) {
                 return;
             }
-            if (activeTab.id === 'Lyrics') {
-                document.getElementById('lyrics-loading').classList.add('show');
-            } else if (activeTab.id === 'Image') {
+            if (activeTab.id === 'Image') {
                 document.getElementById('image-loading').classList.add('show');
             }
         }
 
-        // File input enhancement
         document.getElementById('image').addEventListener('change', function(e) {
             const file = e.target.files[0];
             const label = document.querySelector('label[for="image"]');
             setActiveTab('Image');
             if (file) {
-                label.innerHTML = '📸 ' + file.name;
+                label.textContent = file.name;
                 label.style.borderColor = 'var(--emerald)';
                 label.style.backgroundColor = 'rgba(5, 150, 105, 0.05)';
             } else {
-                label.innerHTML = '📸 Click to upload an image of a face';
+                label.textContent = 'Click to upload an image of a face';
                 label.style.borderColor = 'var(--stone-200)';
                 label.style.backgroundColor = 'transparent';
             }
         });
 
-        // Initialize only if no active tab is already set by the template.
         const initialActiveTab = document.querySelector('.tabcontent.active');
         if (!initialActiveTab) {
-            document.getElementById("Lyrics").className += " active";
+            document.getElementById("Image").className += " active";
             document.getElementsByClassName("nav-btn")[0].className += " active";
         }
     </script>
